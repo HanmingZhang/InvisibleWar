@@ -34,14 +34,14 @@ void UThrow::SetupInputComponent() {
 	InputComponent = GetOwner()->FindComponentByClass<UInputComponent>();
 	if (InputComponent) {
 		// Input component is found
-		UE_LOG(LogTemp, Warning, TEXT("Input component found!"));
+		UE_LOG(LogTemp, Warning, TEXT("Throw Input component found!"));
 		// Bind  inpuit
 		InputComponent->BindAction("Throw", IE_Pressed, this, &UThrow::AddThrowScale);
 		InputComponent->BindAction("Throw", IE_Released, this, &UThrow::Throw);
 
 	}
 	else {
-		UE_LOG(LogTemp, Error, TEXT("%s missing input component"), *GetOwner()->GetName());
+		UE_LOG(LogTemp, Error, TEXT("%s throw missing input component"), *GetOwner()->GetName());
 	}
 }
 
