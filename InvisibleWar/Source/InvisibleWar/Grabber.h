@@ -4,7 +4,7 @@
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
 #include "PhysicsEngine/PhysicsHandleComponent.h"
-#include "Components/InputComponent.h"
+//#include "Components/InputComponent.h"
 #include "Grabber.generated.h"
 
 
@@ -22,7 +22,7 @@ protected:
 	virtual void BeginPlay() override;
 
 	// Setup (assumed) attached input component
-	void SetupInputComponent();
+	//void SetupInputComponent();
 
 	// Find attached physics handle component
 	void FindPhysicsHandleComponent();
@@ -31,16 +31,20 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
-	
+	// It's Ray-cast and grab what's it reach
+	UFUNCTION(BlueprintCallable, Category = "ActionInput")
+	void Grab();
+	UFUNCTION(BlueprintCallable, Category = "ActionInput")
+	void Release();
+
 
 private:
-	float Reach = 100.f;
+	float Reach = 300.f;
+	float Reach_Hold = 200.f;
 	UPhysicsHandleComponent* PhysicsHandle = nullptr;
-	UInputComponent* InputComponent = nullptr;
+	//UInputComponent* InputComponent = nullptr;
 
-	// It's Ray-cast and grab what's it reach
-	void Grab();
-	void Release();
+	FVector GetHoldPos();
 
 	// Return the current end of reach line
 	FVector GetLineTraceEnd();
